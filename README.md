@@ -1,3 +1,9 @@
+Requerimentos:
+django -> pip install django
+postgres -> pip install psycopg2
+
+// Caso for usar outro tipo de banco, o psycopg2 não vai servir. Falar comigo.
+
 COMANDOS VIA TERMINAL:
 
 para fazer as migrações do banco
