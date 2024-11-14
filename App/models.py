@@ -7,4 +7,4 @@ class Register(models.Model):
     is_smok = models.BooleanField()
 
     def __str__(self):
-        return f"{self.user} - {self.date} - {'Usou' if self.is_smok else 'Não usou'}"
+        return f"{self.user} - {self.date} - {'Não usou' if self.is_smok else ''}"
