@@ -41,7 +41,6 @@ def calendario(request):
     registros = Register.objects.filter(user=request.user)
     return render(request, 'calendario.html', {'form': form, 'registros': registros})
 
-
 # Função para deletar um registro específico
 @login_required
 def deletar_registro(request, id):
@@ -88,9 +87,12 @@ def registrar_uso_cigarro(request):
 
         return JsonResponse({'status': 'success'})
 
+# Função para confirmar a exclusão de um registro específico
+@login_required
 def confirmar_exclusao(request, id):
-    registro = get_object_or_404(Register, id=id)
+    registro = get_object_or_404(Register, id=id, user=request.user)  # Garante que o registro pertence ao usuário
     if request.method == "POST":
         registro.delete()
-        return redirect('calendario')  
+        messages.success(request, "Registro excluído com sucesso!")
+        return redirect('calendario')
     return render(request, 'confirmar_exclusao.html', {'registro': registro})
